@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dict>
+  <key>1</key>
+  <string>code/</string>
+  <key>2</key>
+  <string>code/mainscene/</string>
+  <key>3</key>
+  <string>code/common/</string>
+  <key>4</key>
+  <string>code/startview/</string>
+  <key>5</key>
+  <string>code/windows/</string>
+</dict>
