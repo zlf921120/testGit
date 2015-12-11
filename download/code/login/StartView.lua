@@ -48,6 +48,11 @@ function StartView:init()
 		Notifier.remove(CmdName.Start_View_update, self._onViewUpdate)
 	end
 
+	self._onUpdateData = function()
+		self:updateData()
+		Notifier.remove(CmdName.Start_Update_Data, self._onUpdateData)
+	end
+
 	local function Btn_Event(sender,event_type)
 		if event_type == CmdName.TouchType.ended then
 			local btn_tag = sender:getTag()
@@ -98,6 +103,7 @@ function StartView:init()
 				local strengView = LayerCtrl:getInstance():open(CmdName.StrengView)
 				ComMgr:getInstance():getScene():addChild(strengView)
 				Notifier.regist(CmdName.Start_View_update, self._onViewUpdate)
+				Notifier.regist(CmdName.Start_Update_Data, self._onUpdateData)
 			end
 			
 		end
@@ -138,7 +144,7 @@ function StartView:init()
 		self:initData()
 	end)
 
-	self.bar_ack = tolua.cast(self._widget:getChildByName("bar_ack"), "LoadingBar")
+	self.bar_ack = tolua.cast(self._widget:getChildByName("bar_bat"), "LoadingBar")
 	self.bar_def = tolua.cast(self._widget:getChildByName("bar_def"), "LoadingBar")
 	
 end
@@ -198,6 +204,7 @@ function StartView:getAirImg()
 end
 
 function StartView:updateData()
+	print("Notifier call back")
 	local curIndex = self.page_air:getCurPageIndex() + 1
 	local curLev = ComMgr:getInstance():getData(CmdName.Air_Lev * curIndex)
 	local allLev = ComMgr:getInstance():getData(curIndex * CmdName.Air_Max_Lev)
@@ -206,6 +213,9 @@ function StartView:updateData()
 	self.bar_ack:setPercent((curAckLev/allLev)*100)
 	self.bar_def:setPercent((curDefLev/allLev)*100)
 
+	self.lab_def:setText(tostring(curDefLev).."/"..tostring(allLev))
+	self.lab_ack:setText(tostring(curAckLev).."/"..tostring(allLev))
+
 	local img_air = self:getAirImg()
-	img_air:loadTexture(string.format("a%d_%d.png"), curIndex, curLev)
+	img_air:loadTexture(string.format("a%d_%d.png", curIndex, curLev), UI_TEX_TYPE_PLIST)
 end

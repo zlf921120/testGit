@@ -23,6 +23,7 @@ function StrengView:init()
 		if event_type == CmdName.TouchType.ended then
 			LayerCtrl:getInstance():close(self.id)
 			Notifier.dispatchCmd(CmdName.Start_View_update)
+			Notifier.dispatchCmd(CmdName.Start_Update_Data)
 		end
 	end)
 

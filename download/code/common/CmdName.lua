@@ -27,6 +27,7 @@ CmdName.Start_Shoot = "CmdName.Start_Shoot"
 
 --观察者tag
 CmdName.Start_View_update = "Start_View_update"
+CmdName.Start_Update_Data = "Start_Update_Data"
 CmdName.Skill_Btn_update = "Skill_Btn_update"
 
 CmdName.Bomb_Png_Name = "boom_%d_0.png"
