@@ -66,6 +66,11 @@ function LayerBase:listenerReturn()
 			ComWinTips.show("确定要退出游戏吗？", function()
 				LayerCtrl:getInstance():gameClose()
 			end, self)
+		elseif event == "menuClicked" then
+			ComWinTips.show("确定要清空数据并退出游戏吗？", function()
+				ComMgr:getInstance():setData(CmdName.Frist_Game, 0)
+				LayerCtrl:getInstance():gameClose()
+			end, self)
 		end
 	end)
 end
