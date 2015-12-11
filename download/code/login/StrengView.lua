@@ -67,8 +67,9 @@ function StrengView:init()
 				ComTextTips.show("攻击等级已经达到满级！\n当战机等级提升时可以再次提升攻击等级", self)
 				return
 			end
+			cclog("ack=%d, max=%d", ackLev, max_lev)
 			if ackLev < max_lev then
-				ComMgr:getInstance():setData(CmdName.Air_Ack_Lev, ackLev + 1)
+				ComMgr:getInstance():setData(CmdName.Air_Ack_Lev * _type, ackLev + 1)
 			end
 			checkLev()
 			self:updateData()
@@ -83,8 +84,9 @@ function StrengView:init()
 				ComTextTips.show("防御等级已经达到满级！\n当战机等级提升时可以再次提升防御等级", self)
 				return
 			end
+			cclog("def=%d, max=%d", defLev, max_lev)
 			if defLev < max_lev then
-				ComMgr:getInstance():setData(CmdName.Air_Def_Lev, defLev + 1)
+				ComMgr:getInstance():setData(CmdName.Air_Def_Lev * _type, defLev + 1)
 			end
 			checkLev()
 			self:updateData()
