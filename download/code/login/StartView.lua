@@ -88,12 +88,14 @@ function StartView:init()
 					self.isChange = 1
 					self.page_air:scrollToPage(curPageIndex - 1)
 					self:initData()
+					self:updateData()
 				end
 			elseif btn_tag == 15 then
 				if curPageIndex < 5 then
 					self.isChange = 1
 					self.page_air:scrollToPage(curPageIndex + 1)
 					self:initData()
+					self:updateData()
 				end
 			else
 				self:initData()
@@ -142,11 +144,12 @@ function StartView:init()
 		local curIndex = self.page_air:getCurPageIndex()
 		self.isChange = 1
 		self:initData()
+		self:updateData()
 	end)
 
 	self.bar_ack = tolua.cast(self._widget:getChildByName("bar_bat"), "LoadingBar")
 	self.bar_def = tolua.cast(self._widget:getChildByName("bar_def"), "LoadingBar")
-	
+	self:updateData()
 end
 
 function StartView:addBg()
