@@ -2378,7 +2378,7 @@
           "capInsetsY": 0,
           "direction": 0,
           "percent": 100,
-          "scale9Enable": true,
+          "scale9Enable": false,
           "texture": null,
           "textureData": {
             "path": "bar_attack.png",
@@ -2432,7 +2432,7 @@
           "capInsetsY": 0,
           "direction": 0,
           "percent": 100,
-          "scale9Enable": true,
+          "scale9Enable": false,
           "texture": null,
           "textureData": {
             "path": "bar_defense.png",
