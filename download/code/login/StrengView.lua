@@ -1,4 +1,8 @@
 StrengView = class("StrengView", LayerBase)
+local _type = nil
+local max_lev = nil
+local _lev = nil
+
 
 function StrengView:create()
 	local ret = StrengView.new()
@@ -37,26 +41,65 @@ function StrengView:init()
 
 	self:initView()
 
+	local function checkLev()
+		local ackLev = ComMgr:getInstance():getData(CmdName.Air_Ack_Lev * _type)
+		local defLev = ComMgr:getInstance():getData(CmdName.Air_Def_Lev * _type)
+		if ackLev/max_lev >= 1 and defLev/max_lev >= 1 then
+			if _lev < 3 then
+				ComWinTips.show("恭喜！战机等级提升..\n战力大幅度提升", function()
+					self:removeChildByTag(CmdName.Com_Win_Tips, false)
+				end, self)
+				ComMgr:getInstance():setData(CmdName.Air_Lev * _type, _lev + 1)
+				ComMgr:getInstance():setData(CmdName.Air_Ack_Lev * _type, _type + 1)
+				ComMgr:getInstance():setData(CmdName.Air_Def_Lev * _type, _type + 1)
+			else
+				ComTextTips.show("战机已经完美了！", self)
+			end
+		end
+		
+	end
+
 	local btn_act = tolua.cast(self._widget:getChildByName("btn_act"), "Button")
 	btn_act:addTouchEventListener(function(sender, event_type)
 		if event_type == CmdName.TouchType.ended then
-
+			local ackLev = ComMgr:getInstance():getData(CmdName.Air_Ack_Lev * _type)
+			if ackLev >= max_lev and _lev < 3 then
+				ComTextTips.show("攻击等级已经达到满级！\n当战机等级提升时可以再次提升攻击等级", self)
+				return
+			end
+			if ackLev < max_lev then
+				ComMgr:getInstance():setData(CmdName.Air_Ack_Lev, ackLev + 1)
+			end
+			checkLev()
+			self:updateData()
 		end
 	end)
 
 	local btn_def = tolua.cast(self._widget:getChildByName("btn_def"), "Button")
 	btn_def:addTouchEventListener(function(sender, event_type)
 		if event_type == CmdName.TouchType.ended then
-			
+			local defLev = ComMgr:getInstance():getData(CmdName.Air_Def_Lev * _type)
+			if defLev >= max_lev and _lev < 3 then
+				ComTextTips.show("防御等级已经达到满级！\n当战机等级提升时可以再次提升防御等级", self)
+				return
+			end
+			if defLev < max_lev then
+				ComMgr:getInstance():setData(CmdName.Air_Def_Lev, defLev + 1)
+			end
+			checkLev()
+			self:updateData()
 		end
 	end)
 
 end
 
+
 function StrengView:initView()
-	local _type = MyCustom:getDataByKey(CmdName.Air_Type)
-	local _lev = MyCustom:getDataByKey(CmdName.Air_Lev * _type)
-	self.img_air:loadTexture(string.format("a%d_%d.png", _type, _lev), UI_TEX_TYPE_PLIST)
+	_type = MyCustom:getDataByKey(CmdName.Air_Type)
+	
+
+	self:updateData()
+
 	local name
 	if _type == 1 then
 		name = "军 刀"
@@ -71,7 +114,24 @@ function StrengView:initView()
 	else
 		name = "赤 焰"
 	end
-	self.lab_name：setText(name)
+	self.lab_name:setText(name)
+end
+
+function StrengView:updateData()
+	_lev = MyCustom:getDataByKey(CmdName.Air_Lev * _type)
+	print("lev=",_lev)
+	self.img_air:loadTexture(string.format("a%d_%d.png", _type, _lev), UI_TEX_TYPE_PLIST)
+	max_lev = ComMgr:getInstance():getData(CmdName.Air_Max_Lev * _type)
+	local defLev = ComMgr:getInstance():getData(CmdName.Air_Def_Lev * _type)
+	local ackLev = ComMgr:getInstance():getData(CmdName.Air_Ack_Lev * _type)
+	self.lab_act_lev:setText("攻击等级："..tostring(ackLev).."/"..tostring(max_lev))
+	self.lab_def_lev:setText("防御等级："..tostring(defLev).."/"..tostring(max_lev))
+
+	self.bar_act:setPercent(ackLev/max_lev*100)
+	self.bar_def:setPercent(defLev/max_lev*100)
+
+	self.lab_act_icon:setText(tostring(self:getStrengIcon(_type, _lev, ackLev)))
+	self.lab_def_icon:setText(tostring(self:getStrengIcon(_type, _lev, defLev)))
 end
 
 --[[
@@ -80,5 +140,6 @@ end
 	3：阶段
 ]]
 function StrengView:getStrengIcon(curtype, curLev, curStage)
+	print("money=",(curtype + curLev + curStage) * 500)
 	return (curtype + curLev + curStage) * 500
 end
