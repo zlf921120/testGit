@@ -4,12 +4,18 @@ CmdName = {}
 CmdName.TouchType = {}
 CmdName.TouchType.ended = 2
 
+CmdName.LabelDic = {}
+CmdName.LabelDic.Left = 0
+CmdName.LabelDic.Cen = 1
+CmdName.LabelDic.Right = 2
+
 --层id
 CmdName.CurLayer = "CmdName.CurLayer"
 CmdName.StartView = "CmdName.StartView"
 CmdName.MainScene = "CmdName.MainScene"
 CmdName.StrengView = "CmdName.StrengView"
 CmdName.ShopView = "CmdName.ShopView"
+CmdName.TaskView = "CmdName.TaskView"
 
 --公共提示tag
 CmdName.Com_Text_Tips = 1005
@@ -24,6 +30,7 @@ CmdName.Shoot = "CmdName.Shoot"
 CmdName.Boom_Efc = "CmdName.Boom_Efc"
 CmdName.Def_Efc = "CmdName.Def_Efc"
 CmdName.Start_Shoot = "CmdName.Start_Shoot"
+CmdName.Player_Shoot = "CmdName.Player_Shoot"
 
 --观察者tag
 CmdName.Start_View_update = "Start_View_update"

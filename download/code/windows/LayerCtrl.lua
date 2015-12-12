@@ -34,6 +34,10 @@ function LayerCtrl:open(layer_id)
 		require "ShopView"
 		open_layer = ShopView:create()
 		open_layer.type = LayerType.second
+	elseif layer_id == CmdName.TaskView then
+		require "TaskView"
+		open_layer = TaskView:create()
+		open_layer.type = LayerType.second
 	end
 	ComMgr:getInstance():setLayerId(layer_id, open_layer)
 	ComMgr:getInstance():removeLayer(CmdName.CurLayer)
@@ -41,12 +45,6 @@ function LayerCtrl:open(layer_id)
 	open_layer:setLayerId(layer_id)
 	open_layer:init()
 	open_layer:listenerReturn()
-	if open_layer.type == LayerType.frist then
-		open_layer:addCloseBtn()
-	end
-	-- if layer_id ~= CmdName.LoginView then
-	-- 	open_layer:addDefaultShadow()
-	-- end
 
 	return open_layer
 end
@@ -79,4 +77,5 @@ function LayerCtrl:destroy()
 	ComMgr:getInstance():clearRes()
 	TimerMgr.clear()
 	ActionMgr:clearAction()
+	ComData.clear()
 end

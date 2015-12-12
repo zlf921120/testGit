@@ -5,7 +5,6 @@ end)
 
 function Player:create(air_type, air_lev)
 	local ret = Player.new(air_type, air_lev)
-	self._type = air_type
 	ret:init()
 	return ret
 end
@@ -13,6 +12,7 @@ end
 function Player:init()
 	self.isPlayAction = 0
 	self.canSk = 0
+	self._type = ComMgr:getInstance():getData(CmdName.Air_Type)
 end
 
 function Player:setIsPlay(_isPlay)
@@ -63,6 +63,21 @@ function Player:playEffect(isBoom)
 end
 
 function Player:shoot()
+	print("aaa=",self._type)
+	local name = string.format("p%d_bt_lv3.png", self._type)
+	local bullet = ComMgr:getInstance():createSprByPlist(name)
+	local btsize = bullet:getContentSize()
+	local airsize = self:getContentSize()
+	bullet:setPosition(ccp(self:getPositionX(), airsize.height/2 + self:getPositionY() + btsize.height*0.35))
+	self:getParent():getBulletParent():addChild(bullet)
+	table.insert(ComData.playerBullet, bullet)
+	local speed = (1000 - bullet:getPositionY())/800
+	local _action = CCSequence:createWithTwoActions(CCMoveBy:create(speed, ccp(0, 1000 - bullet:getPositionY())), CCCallFunc:create(
+		function()
+			table.remove(ComData.playerBullet, bullet)
+			bullet:removeFromParentAndCleanup(true)
+		end))
+	bullet:runAction(_action)
 end
 
 local cur_boom_num = 0
@@ -99,4 +114,10 @@ function Player:runDefEfc()
 	local _action = ActionMgr:getInstance():getActionByData(0, string.format("energy_%d_", curLev - 1), curLev * 0.3 + 0.8)
 	ActionMgr:getInstance():playAction(_action, self, string.format(CmdName.Def_Png_Name, curLev - 1), pos.x, pos.y)
 	cur_def_num = cur_def_num + 1
+end
+
+function Player:getBox()
+	local size = self:getContentSize()
+	local x, y = self:getPosition()
+	return CCRectMake(x-size.width*0.5, y-size.height*0.5, size.width, size.height)
 end

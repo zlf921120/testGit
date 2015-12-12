@@ -145,3 +145,7 @@ function ComMgr:setData(key, value)
 	end
 	MyCustom:setDataByKey(key, value)
 end
+
+function ComMgr:isCollision(rect, pos)
+	return CCRect.containsPoint(rect, pos)
+end

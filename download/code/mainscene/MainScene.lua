@@ -22,7 +22,10 @@ function MainScene:init()
 	ComMgr:getInstance():loadRes(def_plist, def_png)
 	table.insert(self._canDelRes, boom_plist)
 	table.insert(self._canDelRes, def_plist)
-	
+
+	self.allBullet = CCSpriteBatchNode:create("ui/bullet/user_bullet.png")
+	self:addChild(self.allBullet)
+
 	ComMgr:getInstance():loadRes(plistName, pngName)
 	table.insert(self._canDelRes, plistName)
 
@@ -38,6 +41,10 @@ function MainScene:init()
 	self.player:setPosition(ccp(320, self.playerSize.height*0.5))
 	self:addChild(self.player)
 	self.player:setTag(CmdName.Player)
+
+	TimerMgr.add(function()
+		self.player:shoot()
+	end, 0.1, CmdName.Player_Shoot)
 
 	self.posDiffX = nil
 	self.posDiffY = nil
@@ -107,4 +114,8 @@ function MainScene:updatePlayerPos(diffX, diffY)
 			end
 		end
 	end
+end
+
+function MainScene:getBulletParent()
+	return self.allBullet
 end

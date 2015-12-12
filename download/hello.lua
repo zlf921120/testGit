@@ -14,6 +14,7 @@ require "LayerBase"
 require "LayerCtrl"
 require "SceneCtrl"
 require "ActionMgr"
+require "ComData"
 
 -- for CCLuaEngine traceback
 function __G__TRACKBACK__(msg)

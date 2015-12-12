@@ -111,8 +111,6 @@ function StartView:init()
 		end
 	end
 
-
-
 	local btn_exit = tolua.cast(self._widget:getChildByName("btn_exit"), "Button")
 	btn_exit:addTouchEventListener(Btn_Event)
 
