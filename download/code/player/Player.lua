@@ -70,11 +70,11 @@ function Player:shoot()
 	local airsize = self:getContentSize()
 	bullet:setPosition(ccp(self:getPositionX(), airsize.height/2 + self:getPositionY() + btsize.height*0.35))
 	self:getParent():getBulletParent():addChild(bullet)
-	table.insert(ComData.playerBullet, bullet)
+	ComData.playerBullet:addObject(bullet)
 	local speed = (1000 - bullet:getPositionY())/800
 	local _action = CCSequence:createWithTwoActions(CCMoveBy:create(speed, ccp(0, 1000 - bullet:getPositionY())), CCCallFunc:create(
 		function()
-			table.remove(ComData.playerBullet, bullet)
+			ComData.playerBullet:removeObject(bullet)
 			bullet:removeFromParentAndCleanup(true)
 		end))
 	bullet:runAction(_action)

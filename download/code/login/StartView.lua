@@ -75,6 +75,7 @@ function StartView:init()
 				LayerCtrl:getInstance():close(self.id)
 				--进入游戏，根据飞机的类型和等级加载对应的大图
 				self:initData()
+				ComData.init()
 				local newScene = CCScene:create()
 				local mainscene = LayerCtrl:getInstance():open(CmdName.MainScene)
 				newScene:addChild(mainscene)

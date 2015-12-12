@@ -1,14 +1,24 @@
 ComData = {}
 
-ComData.enemy = {}
+ComData.init = function()
+	ComData.enemy = CCArray:create()
+	ComData.enemy:retain()
 
-ComData.enemyBullet = {}
+	ComData.enemyBullet = CCArray:create()
+	ComData.enemyBullet:retain()
 
-ComData.playerBullet = {}
+	ComData.playerBullet = CCArray:create()
+	ComData.playerBullet:retain()
+end
+
+
 
 ComData.clear = function()
-	ComData.enemyBullet = nil
-	ComData.enemy = nil
-	ComData.playerBullet = nil
+	ComData.enemyBullet:removeAllObjects()
+	ComData.enemyBullet:release()
+	ComData.enemy:removeAllObjects()
+	ComData.enemy:release()
+	ComData.playerBullet:removeAllObjects()
+	ComData.playerBullet:release()
 	ComData = nil
 end
