@@ -1,4 +1,5 @@
 require "Player"
+require "TaskView"
 
 MainScene = class("MainScene", LayerBase)
 
@@ -18,6 +19,7 @@ function MainScene:init()
 	local boom_png = string.format("ui/effect/boom_%d.png", curLev - 1)
 	local def_plist = string.format("ui/effect/energy_%d.plist", curLev - 1)
 	local def_png = string.format("ui/effect/energy_%d.png", curLev - 1)
+
 	ComMgr:getInstance():loadRes(boom_plist, boom_png)
 	ComMgr:getInstance():loadRes(def_plist, def_png)
 	table.insert(self._canDelRes, boom_plist)
@@ -28,6 +30,10 @@ function MainScene:init()
 
 	ComMgr:getInstance():loadRes(plistName, pngName)
 	table.insert(self._canDelRes, plistName)
+
+	local _task = LayerCtrl:getInstance():open(CmdName.TaskView)
+	self:addChild(_task)
+	_task:setShowText(TaskText[1])
 
 	require "SkBtn"
 	self._skBtn = SkBtn:create()
