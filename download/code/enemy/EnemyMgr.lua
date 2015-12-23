@@ -25,13 +25,6 @@ function EnemyMgr:addEnemy()
 		return
 	end
 	local _count, _speed, _name, _pos, _delay, _died = EnemyData.getdata(self.curWave, self.other)
-	print("max=",_count)
-	print("pos=",#_pos)
-	print("_speed=",_speed)
-	print("_name=",_name)
-	for i=1, #_pos do
-		print(_pos[i].x, _pos[i].y)
-	end
 	if self.count >= _count then
 		--遍历当前wave的下一个元素
 		self.allWave = self.allWave + 1
