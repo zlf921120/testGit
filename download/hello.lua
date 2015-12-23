@@ -1,22 +1,4 @@
-require "CCBReaderLoad"
-require "Cocos2d"
-require "CocoStudio"
-require "extern"
-require "Cocos2d"
-require "AudioEngine" 
-require "CmdName"
-require "ComMgr"
-require "Notifier"
-require "ComTextTips"
-require "ComWinTips"
-require "TimerMgr"
-require "LayerBase"
-require "LayerCtrl"
-require "SceneCtrl"
-require "ActionMgr"
-require "ComData"
-require "TaskText"
-
+require "LuaFile"
 -- for CCLuaEngine traceback
 function __G__TRACKBACK__(msg)
     print("----------------------------------------")
@@ -47,6 +29,9 @@ local function main()
     end
     -- run
     local sceneGame = CCScene:create()
+    -- local aa = {ccp(1,2), ccp(3,4)}
+    -- print(aa[1].x, aa[1].y)
+    -- print(aa[2].x, aa[2].y)
     local startView = LayerCtrl:getInstance():open(CmdName.StartView)
     sceneGame:addChild(startView)
     SceneCtrl:getInstance():gotoScene(sceneGame)

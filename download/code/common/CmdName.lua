@@ -37,6 +37,7 @@ CmdName.Add_Enemy = "CmdName.Add_Enemy"
 CmdName.Start_View_update = "Start_View_update"
 CmdName.Start_Update_Data = "Start_Update_Data"
 CmdName.Skill_Btn_update = "Skill_Btn_update"
+CmdName.Start_Battle = "Start_Battle"
 
 CmdName.Bomb_Png_Name = "boom_%d_0.png"
 CmdName.Def_Png_Name = "energy_%d_0.png"

@@ -16,4 +16,6 @@
   <string>code/player/</string>
   <key>7</key>
   <string>code/skbutton/</string>
+  <key>8</key>
+  <string>code/enemy/</string>
 </dict>

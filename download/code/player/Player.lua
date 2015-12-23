@@ -63,7 +63,7 @@ function Player:playEffect(isBoom)
 end
 
 function Player:shoot()
-	print("aaa=",self._type)
+	-- print("aaa=",self._type)
 	local name = string.format("p%d_bt_lv3.png", self._type)
 	local bullet = ComMgr:getInstance():createSprByPlist(name)
 	local btsize = bullet:getContentSize()

@@ -1,3 +1,5 @@
+require "Enemy"
+require "EnemyMgr"
 require "Player"
 require "TaskView"
 
@@ -22,14 +24,25 @@ function MainScene:init()
 
 	ComMgr:getInstance():loadRes(boom_plist, boom_png)
 	ComMgr:getInstance():loadRes(def_plist, def_png)
+	ComMgr:getInstance():loadRes("ui/enemy/allenemy.plist", "ui/enemy/allenemy.png")
 	table.insert(self._canDelRes, boom_plist)
 	table.insert(self._canDelRes, def_plist)
+	table.insert(self._canDelRes, "ui/enemy/allenemy.plist")
 
 	self.allBullet = CCSpriteBatchNode:create("ui/bullet/user_bullet.png")
 	self:addChild(self.allBullet)
 
 	ComMgr:getInstance():loadRes(plistName, pngName)
 	table.insert(self._canDelRes, plistName)
+
+	self._startBat = function()
+		print("start add enemy")
+		Notifier.remove(CmdName.Start_Battle, self._startBat)
+		local _em = EnemyMgr:create()
+		self:addChild(_em)
+		_em:addEnemy()
+	end
+	Notifier.regist(CmdName.Start_Battle, self._startBat)
 
 	local _task = LayerCtrl:getInstance():open(CmdName.TaskView)
 	self:addChild(_task)

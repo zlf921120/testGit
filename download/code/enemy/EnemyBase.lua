@@ -1,0 +1,2 @@
+-- EnemyBase = class("EnemyBase", CCSprite)
+
