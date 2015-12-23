@@ -31,6 +31,7 @@ CmdName.Boom_Efc = "CmdName.Boom_Efc"
 CmdName.Def_Efc = "CmdName.Def_Efc"
 CmdName.Start_Shoot = "CmdName.Start_Shoot"
 CmdName.Player_Shoot = "CmdName.Player_Shoot"
+CmdName.Add_Enemy = "CmdName.Add_Enemy"
 
 --观察者tag
 CmdName.Start_View_update = "Start_View_update"

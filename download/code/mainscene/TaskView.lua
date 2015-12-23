@@ -73,25 +73,3 @@ function TaskView:quickShow()
 	end))
 	self:runAction(_action)
 end
-
---[[
-	 local ss = "我1a韩庚A!啊"
-    -- print("len=",string.len(ss))
-    -- print("utf8len=",string.utf8len(ss))
-    local cc = 1
-    -- print("3=",string.sub(ss, 4, 4))
-    local aa
-    local bb
-    while(cc < string.len(ss)) do
-      bb = string.sub(ss, cc, cc)
-      local bt = bb:byte()
-      if bt > 128 then
-        aa = string.sub(ss, cc, cc+2)
-        cc=cc+3
-      else
-        aa=string.sub(ss, cc, cc)
-        cc=cc+1
-      end
-      print("aa=",aa)
-    end
-]]

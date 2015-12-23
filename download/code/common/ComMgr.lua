@@ -149,3 +149,15 @@ end
 function ComMgr:isCollision(rect, pos)
 	return CCRect.containsPoint(rect, pos)
 end
+
+--[[
+    获取两点之间的距离
+]]
+function ComMgr:getDistance(pOne, pTwo)
+
+	local dx = math.abs(pTwo.x - pOne.x)
+	local dy = math.abs(pTwo.y - pOne.x)
+
+	return math.sqrt(dx * dx, dy * dy)
+
+end
