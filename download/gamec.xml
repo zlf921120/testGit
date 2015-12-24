@@ -18,4 +18,6 @@
   <string>code/skbutton/</string>
   <key>8</key>
   <string>code/enemy/</string>
+  <key>9</key>
+  <string>code/helper/</string>
 </dict>

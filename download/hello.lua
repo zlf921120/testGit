@@ -15,7 +15,7 @@ local function main()
     ComMgr:getInstance():loadRes("ui/common/common.plist", "ui/common/common.png")
     math.randomseed(os.time())
     if ComMgr:getInstance():getData(CmdName.Frist_Game) ~= 1 then
-        ComMgr:getInstance():setData(CmdName.Frist_Game, 1)
+        -- ComMgr:getInstance():setData(CmdName.Frist_Game, 1)
         for i=1,6 do
             print("111")
             --设置飞机的最大强化等级

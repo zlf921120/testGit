@@ -20,11 +20,14 @@ EnemyData.info[1].name = "e3.png"
 
 
 EnemyData.getdata = function(wave_index, other_index)
+	-- print("wave=",wave_index)
 	local _index1 = EnemyData.wave[wave_index]
 	if not _index1 then
 		return
 	end
+
 	local _info = _index1[other_index]
+	print("iii=",other_index)
 	local _enemyCount = EnemyData.info[_info].enemyCount
 	local _speed = EnemyData.info[_info].speed
 	local _name = EnemyData.info[_info].name

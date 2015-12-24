@@ -146,7 +146,11 @@ function ComMgr:setData(key, value)
 	MyCustom:setDataByKey(key, value)
 end
 
-function ComMgr:isCollision(rect, pos)
+function ComMgr:isCollision(node, pos)
+	if not node then
+		return false
+	end
+	local rect = _instance:getRect(node)
 	return CCRect.containsPoint(rect, pos)
 end
 
@@ -157,7 +161,12 @@ function ComMgr:getDistance(pOne, pTwo)
 
 	local dx = math.abs(pTwo.x - pOne.x)
 	local dy = math.abs(pTwo.y - pOne.x)
-
 	return math.sqrt(dx * dx, dy * dy)
+end
 
+function ComMgr:getRect(node)
+	local x, y = node:getPosition()
+	local size = node:getContentSize()
+	-- print(size.height)
+	return CCRectMake(x - size.width*0.5, y - size.height*0.5, size.width, size.height)
 end

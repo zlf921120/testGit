@@ -12,15 +12,16 @@ function EnemyMgr:init()
 	self.curWave = 1
 	self.count = 0
 	self.allWave = 1
-	self.other = 1
+	self.other = 2
 end
 
 function EnemyMgr:addEnemy()
-	if self.allWave > #EnemyData.wave[self.curWave] then
+	-- print("max le=",#EnemyData.wave[self.curWave])
+	if self.allWave >= #EnemyData.wave[self.curWave] then
 		--加载下一波敌人
 		self.curWave = self.curWave + 1
 		self.allWave = 1
-		self.other = 1
+		self.other = 2
 		self.count = 0
 		return
 	end
@@ -28,8 +29,14 @@ function EnemyMgr:addEnemy()
 	if self.count >= _count then
 		--遍历当前wave的下一个元素
 		self.allWave = self.allWave + 1
+		self.other = self.other + 1
 		self.count = 0
-		if not _delay then
+		print("over")
+		print("over")
+		print("over")
+		print("over")
+		print("over")
+		if _delay then
 			local _newaction = CCSequence:createWithTwoActions(CCDelayTime:create(_delay), CCCallFunc:create(function()
 				self:addEnemy()
 			end))
@@ -59,7 +66,6 @@ function EnemyMgr:addEnemy()
 	_enemy:runAction(_action)
 
 	self.count = self.count + 1
-	self.other = self.other + 1
 
 	local __action = CCSequence:createWithTwoActions(CCDelayTime:create(0.3), CCCallFunc:create(function()
 		self:addEnemy()

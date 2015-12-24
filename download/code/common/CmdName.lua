@@ -32,6 +32,7 @@ CmdName.Def_Efc = "CmdName.Def_Efc"
 CmdName.Start_Shoot = "CmdName.Start_Shoot"
 CmdName.Player_Shoot = "CmdName.Player_Shoot"
 CmdName.Add_Enemy = "CmdName.Add_Enemy"
+CmdName.Player_Bt_Enemy = "CmdName.Player_Bt_Enemy"
 
 --观察者tag
 CmdName.Start_View_update = "Start_View_update"
@@ -49,6 +50,9 @@ CmdName.Air_Ack_Lev = 228
 CmdName.Air_Def_Lev = 229
 CmdName.Frist_Game = 5
 CmdName.Air_Max_Lev = 338
+CmdName.Game_Day = 7
+CmdName.Game_Mon = 8
+CmdName.Game_Icon = 6
 
 CmdName.Air_Action_Left = "air_action_left"
 CmdName.Air_Action_Right = "air_action_right"

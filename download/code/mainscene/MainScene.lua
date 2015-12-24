@@ -2,6 +2,7 @@ require "Enemy"
 require "EnemyMgr"
 require "Player"
 require "TaskView"
+require "check"
 
 MainScene = class("MainScene", LayerBase)
 
@@ -21,7 +22,6 @@ function MainScene:init()
 	local boom_png = string.format("ui/effect/boom_%d.png", curLev - 1)
 	local def_plist = string.format("ui/effect/energy_%d.plist", curLev - 1)
 	local def_png = string.format("ui/effect/energy_%d.png", curLev - 1)
-
 	ComMgr:getInstance():loadRes(boom_plist, boom_png)
 	ComMgr:getInstance():loadRes(def_plist, def_png)
 	ComMgr:getInstance():loadRes("ui/enemy/allenemy.plist", "ui/enemy/allenemy.png")
@@ -34,6 +34,10 @@ function MainScene:init()
 
 	ComMgr:getInstance():loadRes(plistName, pngName)
 	table.insert(self._canDelRes, plistName)
+
+	TimerMgr.add(function()
+		check.updateCollision()
+	end, 0.01, CmdName.Player_Bt_Enemy)
 
 	self._startBat = function()
 		print("start add enemy")

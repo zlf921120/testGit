@@ -74,8 +74,10 @@ function Player:shoot()
 	local speed = (1000 - bullet:getPositionY())/800
 	local _action = CCSequence:createWithTwoActions(CCMoveBy:create(speed, ccp(0, 1000 - bullet:getPositionY())), CCCallFunc:create(
 		function()
-			ComData.playerBullet:removeObject(bullet)
-			bullet:removeFromParentAndCleanup(true)
+			if bullet then
+				ComData.playerBullet:removeObject(bullet)
+				bullet:removeFromParentAndCleanup(true)
+			end
 		end))
 	bullet:runAction(_action)
 end
