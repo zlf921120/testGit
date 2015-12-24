@@ -7,14 +7,6 @@ function StartView:create()
 end
 
 function StartView:init()
-	for i,v in pairs(EnemyData.wave) do
-		for k,d in pairs(EnemyData.wave[i]) do
-			for z,s in pairs(EnemyData.info[d]) do
-				print(z,s)
-			end
-		end
-	end
-
 	self.isChange = 0
 	ComMgr:getInstance():loadRes("ui/start/startui.plist", "ui/start/startui.png")
 	ComMgr:getInstance():loadRes("ui/bullet/user_bullet.plist", "ui/bullet/user_bullet.png")
