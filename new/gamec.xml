@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dict>
+  <key>IsUpdate</key>
+  <string>1</string>
+  <key>1</key>
+  <string>code/</string>
+  <key>2</key>
+  <string>code/common/</string>
+  <key>3</key>
+  <string>code/login/</string>
+  <key>4</key>
+  <string>code/windows/</string>
+  <key>5</key>
+  <string>code/mainscene/</string>
+  <key>6</key>
+  <string>code/player/</string>
+  <key>7</key>
+  <string>code/skbutton/</string>
+  <key>8</key>
+  <string>code/enemy/</string>
+  <key>9</key>
+  <string>code/helper/</string>
+</dict>
