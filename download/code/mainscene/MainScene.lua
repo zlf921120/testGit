@@ -22,10 +22,13 @@ function MainScene:init()
 	local boom_png = string.format("ui/effect/boom_%d.png", curLev - 1)
 	local def_plist = string.format("ui/effect/energy_%d.plist", curLev - 1)
 	local def_png = string.format("ui/effect/energy_%d.png", curLev - 1)
+
 	ComMgr:getInstance():loadRes(boom_plist, boom_png)
 	ComMgr:getInstance():loadRes(def_plist, def_png)
+	ComMgr:getInstance():loadRes("ui/enemy/ehp.plist", "ui/enemy/ehp.png")
 	ComMgr:getInstance():loadRes("ui/enemy/allenemy.plist", "ui/enemy/allenemy.png")
 	table.insert(self._canDelRes, boom_plist)
+	table.insert(self._canDelRes, "ui/enemy/ehp.plist")
 	table.insert(self._canDelRes, def_plist)
 	table.insert(self._canDelRes, "ui/enemy/allenemy.plist")
 

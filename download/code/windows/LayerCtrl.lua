@@ -66,6 +66,7 @@ function LayerCtrl:gameClose()
 	TimerMgr.clear()
 	ActionMgr:clearAction()
 	MyCustom:gameClose()
+	EnemyData = nil
 end
 
 function LayerCtrl:destroy()
@@ -78,4 +79,5 @@ function LayerCtrl:destroy()
 	TimerMgr.clear()
 	ActionMgr:clearAction()
 	ComData.clear()
+	EnemyData = nil
 end

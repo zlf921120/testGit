@@ -158,10 +158,11 @@ end
     获取两点之间的距离
 ]]
 function ComMgr:getDistance(pOne, pTwo)
-
+	print(pTwo.x, pOne.x)
+	print(pTwo.y, pOne.y)
 	local dx = math.abs(pTwo.x - pOne.x)
 	local dy = math.abs(pTwo.y - pOne.x)
-	return math.sqrt(dx * dx, dy * dy)
+	return math.sqrt(dx * dx + dy * dy)
 end
 
 function ComMgr:getRect(node)
