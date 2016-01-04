@@ -45,10 +45,6 @@ end
 function LayerBase:listenerReturn()
 	self:setKeypadEnabled(true)
 	self:registerScriptKeypadHandler(function(event)
-		print("event=",event)
-		print("event=",event)
-		print("event=",event)
-		print("event=",event)
 		if event == "backClicked" then
 			ComWinTips.show("确定要退出游戏吗？", function()
 				LayerCtrl:getInstance():gameClose()

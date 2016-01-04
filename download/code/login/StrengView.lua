@@ -21,6 +21,10 @@ function StrengView:init()
 	local btn_close = tolua.cast(self._widget:getChildByName("btn_close"), "Button")
 	btn_close:addTouchEventListener(function(sender, event_type)
 		if event_type == CmdName.TouchType.ended then
+			local _oldLayer = ComMgr:getInstance():getLayerById(CmdName.StartView)
+			if _oldLayer then
+				_oldLayer:listenerReturn()
+			end
 			LayerCtrl:getInstance():close(self.id)
 			Notifier.dispatchCmd(CmdName.Start_View_update)
 			Notifier.dispatchCmd(CmdName.Start_Update_Data)

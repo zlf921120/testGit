@@ -39,6 +39,10 @@ function LayerCtrl:open(layer_id)
 		open_layer = TaskView:create()
 		open_layer.type = LayerType.second
 	end
+	local _oldLayer = ComMgr:getInstance():getLayerById(CmdName.CurLayer)
+	if _oldLayer then
+		_oldLayer:setKeypadEnabled(false)
+	end
 	ComMgr:getInstance():setLayerId(layer_id, open_layer)
 	ComMgr:getInstance():removeLayer(CmdName.CurLayer)
     ComMgr:getInstance():setLayerId(CmdName.CurLayer, open_layer)
