@@ -43,6 +43,13 @@ function LayerBase:delRes()
 end
 
 function LayerBase:listenerReturn()
+	if self.id ~= CmdName.StartView then
+		print("关闭startView的返回键监听")
+		local _oldLayer = ComMgr:getInstance():getLayerById(CmdName.StartView)
+		if _oldLayer then
+			_oldLayer:setKeypadEnabled(false)
+		end
+	end
 	self:setKeypadEnabled(true)
 	self:registerScriptKeypadHandler(function(event)
 		if event == "backClicked" then

@@ -23,6 +23,7 @@ function StrengView:init()
 		if event_type == CmdName.TouchType.ended then
 			local _oldLayer = ComMgr:getInstance():getLayerById(CmdName.StartView)
 			if _oldLayer then
+				print("关闭"..self.id..",开启startView的返回键")
 				_oldLayer:listenerReturn()
 			end
 			LayerCtrl:getInstance():close(self.id)
