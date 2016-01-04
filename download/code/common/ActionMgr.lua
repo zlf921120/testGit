@@ -47,6 +47,10 @@ end
 ]]
 function ActionMgr:playAction(action, parent, sprName, x, y)
 	local playSpr = ComMgr:getInstance():createSprByPlist(sprName)
+	if not playSpr then
+		ComTextTips.show("找不到图片"..sprName, parent)
+		return
+	end
 	playSpr:setPosition(ccp(x, y))
 	parent:addChild(playSpr)
 	local _action = CCSequence:createWithTwoActions(action, CCCallFunc:create(function()

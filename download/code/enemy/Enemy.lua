@@ -89,7 +89,6 @@ function Enemy:updateHp(hurt)
 		self.hpPt:setPercentage(_percentage)
 	end
 	self:setHp(self.hp - hurt)
-	print("hp=", self.hp)
 end
 
 --隐身的循环

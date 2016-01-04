@@ -20,4 +20,6 @@
   <string>code/enemy/</string>
   <key>9</key>
   <string>code/helper/</string>
+  <key>10</key>
+  <string>code/boss/</string>
 </dict>

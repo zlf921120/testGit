@@ -1,15 +1,23 @@
 EnemyData = {}
 
+EnemyData.path = "ui/enemy/"
+
 EnemyData.wave = {}
 EnemyData.delay = {}
 EnemyData.died = {}
 EnemyData.info = {}
+EnemyData.plist = {}
 
-EnemyData.wave[1] = {11,7,3,4,5,6,7,8,9,10,11,12,13}
+EnemyData.boss = {}
 
-EnemyData.delay[1] = {0.1, 1.1, 1.2, 0.5, 1, 0, 0, 1, 1, 0, 1, 1}
 
-EnemyData.died[1] = {1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0}
+EnemyData.wave[1] = {1,2}
+
+EnemyData.plist[1] = {"enemy1", "enemy2", "enemy3", "enemy4", "enemy6", "enemy7", "enemy8", "enemy9", "enemy10"}
+
+EnemyData.delay[1] = {0.1}
+
+EnemyData.died[1] = {1}
 
 EnemyData.info[1] = {} 
 EnemyData.info[2] = {} 
@@ -24,6 +32,15 @@ EnemyData.info[10] = {}
 EnemyData.info[11] = {}
 EnemyData.info[12] = {}
 EnemyData.info[13] = {}
+
+
+EnemyData.boss[1] = {}
+EnemyData.boss[1].circle = 1
+EnemyData.boss[1].mainGun = 2
+EnemyData.boss[1].oneGun = 3
+EnemyData.boss[1].secGun = 4
+EnemyData.boss[1].otGun = 5
+
 
 --[[
 	action:
@@ -51,6 +68,8 @@ EnemyData.info[1].action = 1
 EnemyData.info[1].dic = 0
 EnemyData.info[1].hp = 155
 EnemyData.info[1].isShow = 1
+EnemyData.info[1].isPlay = 1
+EnemyData.info[1].actName = ""
 
 --停留运动，不销毁  横向
 EnemyData.info[2].enemyCount = 3
@@ -195,6 +214,29 @@ EnemyData.info[13].action = 10
 EnemyData.info[13].dic = 2
 EnemyData.info[13].hp = 178
 EnemyData.info[13].isShow = 1
+
+
+EnemyData.boss[1].hp = {800, 400, 1000, 1300, 600}
+EnemyData.boss[1].rotate = {true, 0.1, 50, 5}
+EnemyData.boss[1].pos = {ccp(160, 640), ccp(320, 480), ccp(480, 640), ccp(320, 800), ccp(320, 640), ccp(320, 480), ccp(320, 730), ccp(160, 730), ccp(640, 730)}
+EnemyData.boss[1].isLoop = true
+EnemyData.boss[1].startPos = 8
+EnemyData.boss[1].endPos = 9
+--循环持续的时间，时间到了就换别的方式
+EnemyData.boss[1].loopTime = 3
+--[[
+	发射类型：
+	0，火力全开
+	1，只开main,1和2
+	2，只开main和3
+	3，只开1，2和3
+]]
+EnemyData.boss[1].shootType = {0,1,3,2,3,1,0,0,2}
+--发射间隔的时间,比持续时间少1个长度
+EnemyData.boss[1].shootDelay = {0.8, 1, 0.8, 1.1, 1, 1, 1}
+--发射持续的时间
+EnemyData.boss[1].shootTime = {1,1,1,1,1,1,1,1}
+
 
 
 

@@ -33,6 +33,8 @@ CmdName.Start_Shoot = "CmdName.Start_Shoot"
 CmdName.Player_Shoot = "CmdName.Player_Shoot"
 CmdName.Add_Enemy = "CmdName.Add_Enemy"
 CmdName.Player_Bt_Enemy = "CmdName.Player_Bt_Enemy"
+CmdName.Boss_Rt_Act = "CmdName.Boss_Rt_Act"
+CmdName.Boss_Shoot = "CmdName.Boss_Shoot"
 
 --观察者tag
 CmdName.Start_View_update = "Start_View_update"

@@ -8,18 +8,28 @@ check.updateCollision = function()
 	end
 	local _BtArr = CCArray:create()
 	local _EmArr = CCArray:create()
+	local x = nil
+	local y = nil
 	for i = 0, _EmLenght do
 		local _Em = ComData.enemy:objectAtIndex(i)
-		local x, y = _Em:getPosition()
 		for j = 0, _BtLenght do
 			local _Bt = ComData.playerBullet:objectAtIndex(j)
-			if ComMgr:isCollision(_Bt, ccp(x, y)) and (not _Em:getIsHide()) then
-				_BtArr:addObject(_Bt)
-				local hp = _Em:getHp()
-				if hp > 10 then
-					_Em:updateHp(15)
-				else
-					_EmArr:addObject(_Em)
+			if _Em:getId() ~= 100 then
+				x, y = _Em:getPosition()
+			else
+				local pos = _Em:convertToWorldSpace(ccp(0, 0))
+				x,y = pos.x, pos.y
+			end
+			if ComMgr:isCollision(_Bt, ccp(x, y)) then
+				-- print("pos=",x, y)
+				if (_Em:getId() ~= 100 and (not _Em:getIsHide())) or _Em:getId() == 100 then
+					_BtArr:addObject(_Bt)
+					local hp = _Em:getHp()
+					if hp > 15 then
+						_Em:updateHp(15)
+					else
+						_EmArr:addObject(_Em)
+					end
 				end
 			end
 		end
@@ -33,9 +43,12 @@ check.updateCollision = function()
 
 	for i=0, _EmArr:count()-1 do
 		local _Em = _EmArr:objectAtIndex(i)
-		local _parent = _Em:getParent()
-		--父类有个公共的删除方法
-		_parent:comRemove(_Em)
+		if _Em:getId() ~= 100 then
+			local _parent = _Em:getParent()
+			--父类有个公共的删除方法
+			_parent:comRemove(_Em)
+		end
+		
 	end
 
 	_BtArr:removeAllObjects()

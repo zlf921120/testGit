@@ -29,11 +29,13 @@ local function main()
     end
     -- run
     local sceneGame = CCScene:create()
-    -- local aa = {ccp(1,2), ccp(3,4)}
-    -- print(aa[1].x, aa[1].y)
-    -- print(aa[2].x, aa[2].y)
-    -- local a,b,c,d,e,f,g,h,i = EnemyData.getdata(1, 2)
-    -- print(a,b,c,d,e,f,g,h,i)
+    -- local xxx = CCLayer:create()
+    -- ComData.init()
+    -- require "Boss"
+    -- ComMgr:getInstance():loadRes("ui/boss/boss1.plist", "ui/boss/boss1.png")
+    -- local _boss = Boss:create("boss_1.png")
+    -- xxx:addChild(_boss)
+    -- sceneGame:addChild(xxx)
     local startView = LayerCtrl:getInstance():open(CmdName.StartView)
     sceneGame:addChild(startView)
     SceneCtrl:getInstance():gotoScene(sceneGame)

@@ -171,3 +171,35 @@ function ComMgr:getRect(node)
 	-- print(size.height)
 	return CCRectMake(x - size.width*0.5, y - size.height*0.5, size.width, size.height)
 end
+
+local _max_lenght = 6
+--获得正弦值
+function ComMgr:getSinData(angle)
+	local str_data = tostring(MyCustom:getSin(angle))
+	local _sinData = string.sub(str_data, 0, _max_lenght)
+	local _data = tonumber(_sinData)
+	if math.abs(_data) > 1 then
+		return 0
+	end
+	return tonumber(_sinData)
+end
+
+--获得余弦值
+function ComMgr:getCosData(angle)
+	local str_data = tostring(MyCustom:getCos(angle))
+	local _cosData = string.sub(str_data, 0, _max_lenght)
+	local _data = tonumber(_cosData)
+	if math.abs(_data) > 1 then
+		return 0
+	end
+	return tonumber(_cosData)
+end
+
+--获得两个向量的夹角
+function ComMgr:getAngleByPos(pos1, pos2)
+	local pos = ccpSub(pos2, pos1)
+	local _rad = ccpToAngle(pos)
+	local str_angle = tostring(math.deg(-1*_rad))
+	local _angle = string.sub(str_angle, 0, 4)
+	return tonumber(_angle)
+end

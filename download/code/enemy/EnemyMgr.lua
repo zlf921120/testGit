@@ -16,12 +16,21 @@ function EnemyMgr:init()
 	--是否全部死光再加载
 	self.diedCall = false
 	--死光之后回调再次加载
+	self.bossBt = CCSpriteBatchNode:create("ui/1.png")
+	self:addChild(self.bossBt, 10)
 	self.diedCallBack = function()
 		self.diedCall = false
 		self:addEnemy()
 	end
 	--注册观察者，退出主场景要删除观察者
 	Notifier.regist(CmdName.Died_Call, self.diedCallBack)
+end
+
+function EnemyMgr:getBtParent()
+	if not self.bossBt then
+		return nil
+	end
+	return self.bossBt
 end
 
 function EnemyMgr:addEnemy()
@@ -31,6 +40,11 @@ function EnemyMgr:addEnemy()
 		self.allWave = 1
 		self.other = 2
 		self.count = 0
+		require "Boss"
+		ComMgr:getInstance():loadRes("ui/boss/boss1.plist", "ui/boss/boss1.png")
+		local _boss = Boss:create("boss_1.png")
+		-- ComData.enemy:addObject(_boss)
+		self:addChild(_boss)
 		return
 	end
 	self.actionid = EnemyData.getId(self.curWave, self.other)
