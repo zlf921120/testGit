@@ -14,22 +14,17 @@ require "StartView"
 
 local function main()
 	-- cc.CSLoader:setCsbUseType(true)
-	print("xxxxxxxxxxxxxx")
-	print("xxxxxxxxxxxxxx")
-	print("xxxxxxxxxxxxxx")
-	print("xxxxxxxxxxxxxx")
-	print("xxxxxxxxxxxxxx")
-    require("app.MyApp"):create():run()
-    -- local _start = StartView:create()
+    -- require("app.MyApp"):create():run()
+    local _start = StartView:create()
     -- -- if not StartView then
     -- -- 	print("nil")
     -- -- end
-    -- -- local _ss = display.newLayer()
-    -- local _cs = display.newScene()
-    -- _cs:addChild(_start)
+    -- local _ss = display.newLayer()
+    local _cs = display.newScene()
+    _cs:addChild(_start)
     -- -- cc.Director:getInstance():runWithScene(_cs)
     -- cclog("xxxxxx")
-    -- SceneCtrl:getInstance():gotoScene(_cs)
+    SceneCtrl:getInstance():gotoScene(_cs)
     -- cc.CSLoader:setCsbUseType(true)
     if cc.CSLoader:getCsbUseType() then
     	print("使用缓存")

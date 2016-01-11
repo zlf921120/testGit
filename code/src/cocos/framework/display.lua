@@ -26,10 +26,9 @@ local display = {}
 
 local director = cc.Director:getInstance()
 local view = director:getOpenGLView()
-
 if not view then
-    local width = 960
-    local height = 640
+    local width = 640
+    local height = 960
     if CC_DESIGN_RESOLUTION then
         if CC_DESIGN_RESOLUTION.width then
             width = CC_DESIGN_RESOLUTION.width
@@ -41,7 +40,7 @@ if not view then
     view = cc.GLViewImpl:createWithRect("Cocos2d-Lua", cc.rect(0, 0, width, height))
     director:setOpenGLView(view)
 end
-
+view:setFrameSize(640, 960)
 local framesize = view:getFrameSize()
 local textureCache = director:getTextureCache()
 local spriteFrameCache = cc.SpriteFrameCache:getInstance()
