@@ -40,7 +40,7 @@ if not view then
     view = cc.GLViewImpl:createWithRect("Cocos2d-Lua", cc.rect(0, 0, width, height))
     director:setOpenGLView(view)
 end
-view:setFrameSize(640, 960)
+-- view:setFrameSize(640, 960)
 local framesize = view:getFrameSize()
 local textureCache = director:getTextureCache()
 local spriteFrameCache = cc.SpriteFrameCache:getInstance()
